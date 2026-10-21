@@ -1,0 +1,533 @@
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {  
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(90deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+    padding: 2rem;
+    width: 100vw;
+    height: 100%;
+    gap: 30px;
+    justify-content: center;
+}
+
+
+/* H E A D E R */
+
+
+header{
+    padding: 20px;
+    display: flex;
+    max-width: 1400px;
+    height: 5vw;
+    background: var(--bg-secondary);
+    box-shadow: var(--shadow);
+    border-radius: 20px;
+    overflow: hidden;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.navigation {
+    display: flex;
+    gap: 30px;
+    margin-right: auto;
+}
+
+.navigation a {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.navigation a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent-color, #4a90e2);
+    transition: width 0.3s ease;
+}
+
+.navigation a:hover {
+    color: var(--accent-color, #4a90e2);
+}
+
+.navigation a:hover::after {
+    width: 100%;
+}
+
+.logo{
+    display: flex;
+    padding-right: 5%;
+    font-weight: bold;
+    text-align: center;
+    color: var(--accent-color);
+}
+
+/* Бургер меню */
+.hamburger-menu {
+  z-index: 100;
+}
+
+#menu__toggle {
+  opacity: 0;
+  position: absolute;
+}
+
+.menu__btn {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 30px;
+  height: 26px;
+  cursor: pointer;
+  z-index: 2;
+  margin-right: 20px;
+}
+
+.menu__btn > span,
+.menu__btn > span::before,
+.menu__btn > span::after {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  background-color: var(--text-primary);
+  transition-duration: .25s;
+  border-radius: 3px;
+}
+
+.menu__btn > span::before {
+  content: '';
+  top: -8px;
+}
+
+.menu__btn > span::after {
+  content: '';
+  top: 8px;
+}
+
+.menu__box {
+  display: block;
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 300px;
+  height: 100%;
+  margin: 0;
+  padding: 80px 20px 20px;
+  list-style: none;
+  background: var(--bg-primary);
+  box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+  transition-duration: .3s;
+  z-index: 1;
+}
+
+#menu__toggle:checked ~ .menu__box {
+  right: 0;
+}
+
+#menu__toggle:checked ~ .menu__btn > span {
+  transform: rotate(45deg);
+}
+
+#menu__toggle:checked ~ .menu__btn > span::before {
+  top: 0;
+  transform: rotate(0);
+}
+
+#menu__toggle:checked ~ .menu__btn > span::after {
+  top: 0;
+  transform: rotate(90deg);
+}
+
+.menu__item {
+  display: block;
+  padding: 15px 20px;
+  color: var(--text-primary);
+  font-size: 18px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border-radius: 10px;
+}
+
+.menu__item:hover {
+  background: var(--accent-color);
+  color: white;
+  transform: translateX(5px);
+}
+
+/* Переключатель темы в меню */
+.theme-switch-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+    margin-top: 20px;
+    border-top: 1px solid var(--border-color);
+}
+
+.theme-label {
+    padding: 0 !important;
+    margin: 0;
+    font-size: 18px;
+}
+
+.menu__item_theme-label{
+  background: none !important;
+}
+
+.theme-label i {
+    margin-right: 10px;
+}
+
+.theme-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+}
+
+.theme-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .3s;
+    border-radius: 24px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .3s;
+    border-radius: 50%;
+} 
+
+input:checked + .slider {
+    background-color: var(--accent-color);
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+/* M A I N */
+
+main {
+    display: flex;
+    flex-direction: column;
+    max-width: 1400px;
+    background: var(--bg-secondary);
+    box-shadow: var(--shadow);
+    border-radius: 32px;
+    overflow: hidden;
+    padding: 30px;
+    margin: 40px auto;
+    transition: all 0.3s ease;
+}
+
+section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    background: var(--bg-primary);
+    border-radius: 28px;
+    transition: transform 0.25s ease, box-shadow 0.3s ease;
+    scroll-margin-top: 100px; /* для якорных ссылок */
+}
+
+section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.2);
+}
+
+/* Чередование фона секций (лёгкое отличие) */
+section:nth-child(even) {
+    background: var(--bg-secondary);
+}
+
+/* Текстовые блоки */
+.section1_Text,
+.section2_Text,
+.section3_Text {
+    flex: 1;
+    width: 50%;
+}
+
+section h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1.2rem;
+    position: relative;
+    display: inline-block;
+    background: linear-gradient(120deg, var(--accent-color), #a29bfe);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    letter-spacing: -0.01em;
+}
+
+section h3::after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 0;
+    width: 70px;
+    height: 4px;
+    background: var(--accent-color);
+    border-radius: 4px;
+}
+
+section p, section ul {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-top: 1rem;
+}
+
+section ul {
+    padding-left: 1.2rem;
+    list-style: none;
+}
+
+section li {
+    margin-bottom: 0.75rem;
+    position: relative;
+    padding-left: 1.8rem;
+}
+
+section li::before {
+    font-family: "Font Awesome 6 Free";
+    content: "\f00c";
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
+}
+
+/* Изображения в секциях */
+.sectionImg {
+    width: 45%;
+    max-width: 400px;
+    object-fit: cover;
+    border-radius: 24px;
+    box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+}
+
+.sectionImg:hover {
+    transform: scale(1.02);
+}
+
+/* Специальный стиль для третьей секции (преимущества) */
+.section3 .advantages,
+.section3 .pluses {
+    background: var(--bg-primary);
+    padding: 1rem 1.5rem;
+    border-radius: 20px;
+    margin: 1rem 0;
+    transition: all 0.2s;
+}
+
+.section3 .advantages h4,
+.section3 .pluses h4 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.section3 .advantages h4::before {
+    content: "⭐";
+    font-size: 1.2rem;
+}
+
+.section3 .pluses h4::before {
+    content: "🎯";
+    font-size: 1.2rem;
+}
+
+/* Кнопка-призыв (добавить в HTML при желании) */
+.cta-button {
+    display: inline-block;
+    width: 50%;
+    justify-content: center;
+    background: var(--accent-color);
+    color: white;
+    padding: 12px 28px;
+    margin-top: 1.5rem;
+    border-radius: 40px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.25s;
+    box-shadow: 0 6px 14px rgba(108, 92, 231, 0.3);
+}
+
+.cta-button:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(108, 92, 231, 0.4);
+}
+
+/* ===== АДАПТИВНОСТЬ ===== */
+@media (max-width: 992px) {
+    main {
+        padding: 20px;
+    }
+    section {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.5rem;
+        gap: 1.5rem;
+    }
+    .section1_Text,
+    .section2_Text,
+    .section3_Text {
+        width: 100%;
+        text-align: left;
+    }
+    .sectionImg {
+        width: 80%;
+        max-width: 320px;
+        order: -1; /* изображение выше текста на мобильных */
+    }
+    section h3::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    section li::before {
+        left: -0.2rem;
+    }
+}
+
+@media (max-width: 576px) {
+    body {
+        padding: 1rem;
+    }
+    main {
+        margin: 20px auto;
+        padding: 15px;
+    }
+    section {
+        padding: 1rem;
+    }
+    .sectionImg {
+        width: 100%;
+    }
+    section h3 {
+        font-size: 1.4rem;
+    }
+}
+
+/* F O O T E R  */
+
+footer {
+    max-width: 1400px;
+    margin: 40px auto 20px;
+    background: var(--bg-secondary);
+    box-shadow: var(--shadow);
+    border-radius: 20px;
+    overflow: hidden;
+    padding: 40px 30px 20px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.footer-brand h3 {
+    font-size: 1.8rem;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.footer-brand p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.footer-links {
+    display: flex;
+    gap: 30px;
+}
+
+.footer-links a {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.footer-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent-color, #4a90e2);
+    transition: width 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--accent-color, #4a90e2);
+}
+
+.footer-links a:hover::after {
+    width: 100%;
+}
+
+.footer-contacts p {
+    color: var(--text-secondary);
+    margin: 8px 0;
+    font-size: 0.95rem;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color, rgba(0,0,0,0.1));
+}
+
+.footer-bottom p {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}

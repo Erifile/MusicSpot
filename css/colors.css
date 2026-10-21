@@ -1,0 +1,22 @@
+:root {
+  --bg-primary: #b4b4ab;
+  --bg-secondary: #999994;
+  --text-primary: #000000;
+  --header-primary: rgb(111, 127, 179);
+  --div-primary: #9e9a7b;
+  --div-border: rgb(190, 177, 152);
+  --div-hover: #b3ae8c;
+  --card-primary: #7e7a55;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-primary: #5c5b5b;
+    --bg-secondary: #474744;
+    --text-primary: #f0f0f0;
+    --header-primary: rgb(74, 85, 121);
+    --div-primary: #79775f;
+    --div-border: rgb(139, 129, 110);
+    --div-hover: #8a876c;
+    --card-primary: #88856e;
+  }
+}

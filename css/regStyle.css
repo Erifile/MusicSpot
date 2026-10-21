@@ -1,0 +1,354 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+    padding: 2rem;
+}
+
+/* Сообщения */
+.message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--message-bg);
+    color: var(--message-text);
+    padding: 15px 20px;
+    border-radius: 10px;
+    border-left: 4px solid var(--message-border);
+    z-index: 1000;
+    animation: slideIn 0.3s ease;
+}
+
+/* Основной контейнер */
+.register-container {
+    display: flex;
+    height: 100vh;
+    max-width: 1400px;
+    margin: 0 auto;
+    background: var(--bg-primary);
+    box-shadow: var(--shadow);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+/* Левая секция */
+.hero-section {
+    flex: 0 0 70%;
+    position: relative;
+    overflow: hidden;
+}
+
+.back-code {
+    width: 100%;
+    height: 100%;
+}
+
+.heroBack {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.7);
+    transition: transform 0.3s ease;
+}
+
+.heroBack:hover {
+    transform: scale(1.05);
+}
+
+.hero-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    z-index: 2;
+    width: 80%;
+}
+
+.hero-text h1 {
+    font-size: 3rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    animation: fadeInUp 0.8s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Правая секция */
+.registration-section {
+    flex: 0 0 30%;
+    background: var(--bg-secondary);
+    padding: 40px 30px;
+    position: relative;
+}
+
+/* Бургер меню */
+.hamburger-menu {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+}
+
+#menu__toggle {
+    opacity: 0;
+    position: absolute;
+}
+
+.menu__btn {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 30px;
+    height: 26px;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.menu__btn > span,
+.menu__btn > span::before,
+.menu__btn > span::after {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background-color: var(--text-primary);
+    transition-duration: .25s;
+    border-radius: 3px;
+}
+
+.menu__btn > span::before {
+    content: '';
+    top: -8px;
+}
+
+.menu__btn > span::after {
+    content: '';
+    top: 8px;
+}
+
+.menu__box {
+    display: block;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 300px;
+    height: 100%;
+    margin: 0;
+    padding: 80px 20px 20px;
+    list-style: none;
+    background: var(--bg-primary);
+    box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+    transition-duration: .3s;
+    z-index: 1;
+}
+
+#menu__toggle:checked ~ .menu__box {
+    right: 0;
+}
+
+#menu__toggle:checked ~ .menu__btn > span {
+    transform: rotate(45deg);
+}
+
+#menu__toggle:checked ~ .menu__btn > span::before {
+    top: 0;
+    transform: rotate(0);
+}
+
+#menu__toggle:checked ~ .menu__btn > span::after {
+    top: 0;
+    transform: rotate(90deg);
+}
+
+.menu__item {
+    display: block;
+    padding: 15px 20px;
+    color: var(--text-primary);
+    font-size: 18px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border-radius: 10px;
+}
+
+.menu__item:hover {
+    background: var(--accent-color);
+    color: white;
+    transform: translateX(5px);
+}
+
+/* Переключатель темы в меню */
+.theme-switch-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+    margin-top: 20px;
+    border-top: 1px solid var(--border-color);
+}
+
+.theme-label {
+    padding: 0 !important;
+    margin: 0;
+    font-size: 18px;
+}
+
+.theme-label i {
+    margin-right: 10px;
+}
+
+.theme-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+}
+
+.theme-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .3s;
+    border-radius: 24px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .3s;
+    border-radius: 50%;
+} 
+
+input:checked + .slider {
+    background-color: var(--accent-color);
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+/* Форма регистрации */
+.register-form {
+    margin-top: 40px;
+}
+
+.form-title {
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--accent-color);
+}
+
+.form-code-isp {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-top: 10px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.input-field {
+    display: flex;
+    align-items: center;
+    background: var(--input-bg);
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    padding: 12px 15px;
+    transition: all 0.3s ease;
+}
+
+.input-field:hover,
+.input-field:focus-within { /* focus-within - пока поле выбрано */
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(201, 231, 92, 0.1);
+}
+
+.input-field i {
+    color: var(--accent-color);
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+.input-field input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 14px;
+    color: var(--text-primary);
+}
+
+.input-field input::placeholder {
+    color: var(--text-secondary);
+}
+
+/* Кнопка регистрации */
+.register-btn {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, var(--accent-color), var(--accent-hover));
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    margin: 30px 0 20px;
+}
+
+.register-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(108, 92, 231, 0.3);
+}
+
+.register-btn:active {
+    transform: translateY(0);
+}
